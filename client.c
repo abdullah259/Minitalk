@@ -10,50 +10,41 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <signal.h>
-#include <unistd.h>
-#include <string.h>
-#include <stdlib.h>
+// #include <stdio.h>
+// #include <signal.h>
+// #include <unistd.h>
+// #include <string.h>
+// #include <stdlib.h>
 
-int main(int argc, char **argv)
+#include "minitalk.h"
+
+int     main(int argc, char **argv)
 {
-    char *a = "Abdullah";
-    // char a = 'S';
     int i;
-    int j = 0;
-    int k = 0;
-    int at = atoi(argv[1]);
-    while (a[k])
+    int j;
+    int k;
+    int at;
+
+    j = 0;
+    k = 0;
+    at = ft_atoi(argv[1]);
+    if (argc == 3)
     {
-        i = 7;
-        while (i >= 0)
+        while (argv[2][k])
         {
-            j = a[k] >> i & 1;
-            // printf("%d",j);
-            if (j)
-                kill(at,SIGUSR2);
-            else
-                kill(at,SIGUSR1);
-            --i;
-            usleep(2000);
+            i = 7;
+            while (i >= 0)
+            {
+                j = argv[2][k] >> i & 1;
+                if (j)
+                    kill(at,SIGUSR2);
+                else
+                    kill(at,SIGUSR1);
+                --i;
+                usleep(2000);
+            }
+            k++;
         }
-        k++;
-        printf("\n");
     }
-        // i = 7;
-        // while (i >= 0)
-        // {
-        //     j = a >> i & 1;
-        //     // printf("%d",j);
-        //     if (j)
-        //         kill(at,SIGUSR2);
-        //     else
-        //         kill(at,SIGUSR1);
-        //     --i;
-        //     usleep(2000);
-        // }
-        printf("\n");
-    // printf("\n");
 	return (0);
 }

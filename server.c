@@ -1,32 +1,27 @@
-#include <stdio.h>
-#include <signal.h>
-#include <unistd.h>
-char letter;
+// #include <stdio.h>
+// #include <signal.h>
+// #include <unistd.h>
+
+#include "minitalk.h"
 
 void	hansdleus1(int sig)
 {
-    static int i = 0;
-    static unsigned char J;
+    static int i;
+    static char J;
 
-    if (sig == SIGUSR1 && i != 8)
-    {
-        J = J | (0 >> i);
-        i++;
-        printf("0");
-    }
-    else if (sig == SIGUSR2 && i != 8)
+    if (sig == SIGUSR2)
     {
         printf("1");
-        J = J | (128 >> i);
-        i++;
-        // printf("1");
+        J |= 1;
     }
+    i++;
     if (i == 8)
     {
         write(1,&J,1);
         i = 0;
         J = 0;
     }
+    J = J << 1;
 }
 
 int	main(void)
@@ -34,13 +29,23 @@ int	main(void)
 	int	pid;
 
 	pid = getpid();
-	printf("PID: %d\n", pid);
+    char *printPid;
+    int i;
+
+    i = 0;
+    printPid = ft_itoa(pid);
+    while (printPid[i])
+    {
+        write(1,&printPid[i],1);
+        i++;
+    }
+    
+	// printf("PID: %d\n", pid);
 	signal(SIGUSR1, &hansdleus1);
 	signal(SIGUSR2, &hansdleus1);
-	// printf("%c\n",letter);
     while (1)
     {
-        ;
+        pause();
     }
     
 	return (0);

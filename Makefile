@@ -1,7 +1,7 @@
 CC = gcc
 CFLAGS = -Werror -Wextra -Wall
 
-SRC = client.c server.c
+SRC = client.c server.c ft_atoi.c ft_itoa.c
 
 OBJ = $(SRC:.c=.o)
 
