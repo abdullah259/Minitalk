@@ -8,7 +8,6 @@
 #include <stdlib.h>
 
 
-int     main(int argc, char **argv);
 int     ft_atoi(const char *str);
 char    *ft_itoa(int n);
 #endif

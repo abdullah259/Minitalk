@@ -11,7 +11,6 @@ void	hansdleus1(int sig)
 
     if (sig == SIGUSR2)
     {
-        printf("1");
         J |= 1;
     }
     i++;
@@ -27,11 +26,10 @@ void	hansdleus1(int sig)
 int	main(void)
 {
 	int	pid;
+    int i;
+    char *printPid;
 
 	pid = getpid();
-    char *printPid;
-    int i;
-
     i = 0;
     printPid = ft_itoa(pid);
     while (printPid[i])
@@ -39,14 +37,10 @@ int	main(void)
         write(1,&printPid[i],1);
         i++;
     }
-    
-	// printf("PID: %d\n", pid);
 	signal(SIGUSR1, &hansdleus1);
 	signal(SIGUSR2, &hansdleus1);
     while (1)
-    {
         pause();
-    }
     
 	return (0);
 }

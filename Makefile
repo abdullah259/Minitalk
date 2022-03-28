@@ -11,11 +11,11 @@ NAME_SERVER = server
 
 all : $(NAME_CLIENT) $(NAME_SERVER)
 
-$(NAME_CLIENT) : client.o
-	$(CC) $(CFLAGS) client.o -o $(NAME_CLIENT)
+$(NAME_CLIENT) : client.o ft_atoi.o ft_itoa.o
+	$(CC) $(CFLAGS) client.o ft_atoi.o ft_itoa.o -o $(NAME_CLIENT)
 
-$(NAME_SERVER) : server.o
-	$(CC) $(CFLAGS) server.o -o $(NAME_SERVER)
+$(NAME_SERVER) : server.o ft_atoi.o ft_itoa.o
+	$(CC) $(CFLAGS) server.o ft_atoi.o ft_itoa.o -o $(NAME_SERVER)
 
 re: fclean all
 

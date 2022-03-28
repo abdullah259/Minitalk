@@ -6,7 +6,7 @@
 /*   By: aghazi <aghazi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 15:24:13 by aghazi            #+#    #+#             */
-/*   Updated: 2022/03/14 15:16:46 by aghazi           ###   ########.fr       */
+/*   Updated: 2022/03/21 18:01:17 by aghazi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,21 +30,26 @@ int     main(int argc, char **argv)
     at = ft_atoi(argv[1]);
     if (argc == 3)
     {
-        while (argv[2][k])
+        if (at >= 100 && at <= 1000000)
         {
-            i = 7;
-            while (i >= 0)
+            while (argv[2][k])
             {
-                j = argv[2][k] >> i & 1;
-                if (j)
-                    kill(at,SIGUSR2);
-                else
-                    kill(at,SIGUSR1);
-                --i;
-                usleep(2000);
+                i = 7;
+                while (i >= 0)
+                {
+                    j = argv[2][k] >> i & 1;
+                    if (j)
+                        kill(at,SIGUSR2);
+                    else
+                        kill(at,SIGUSR1);
+                    --i;
+                    usleep(100);
+                }
+                k++;
             }
-            k++;
         }
+        else
+            write(1,"Wrong argement you have to input first name of client then PID also the string",79); 
     }
-	return (0);
+    return (0);
 }
